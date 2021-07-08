@@ -18,7 +18,7 @@ class Bowling {
 
             if(pins === 10){
               this.currentFrame.push(10, 0);
-              // this.endFrame();
+              console.log("STRIKE!")
             }  else {
                 this.currentFrame.push(pins);
             }
@@ -41,9 +41,12 @@ class Bowling {
     }
 
     endFrame() {
-        this.currentFrame = [];
-        this.frameIndex++;
-        console.log(this.totalScore);
+      console.log(`this frame #${this.frameIndex}: ${this.currentFrame}`);
+      this.currentFrame = [];
+      this.frameIndex++;
+      console.log(`upcoming frame is #${this.frameIndex}`);
+      console.log(`frames so far: ${this.frames}`);
+      console.log(`score so far: ${this.calculateCurrentScore()}`);
     }
 
     isFinalFrame() {
@@ -81,12 +84,22 @@ class Bowling {
 
         console.log(this.totalScore);
 
-        for(let i=0; i<this.frames.length; i++) {
-            this.totalScore += this.sumArray(this.frames[i]);
-            console.log(this.totalScore);
-        }
+        // for(let i=0; i<this.frames.length; i++) {
+        //     this.totalScore += this.sumArray(this.frames[i]);
+        //     // console.log(this.totalScore);
+        // }
+        this.totalScore = this.calculateCurrentScore();
 
         console.log(`Your total score is: ${this.totalScore}`);
+    }
+
+    calculateCurrentScore() {
+      let currentScore = 0;
+      for(let i=0; i<this.frames.length; i++) {
+          currentScore += this.sumArray(this.frames[i]);
+          // console.log(this.totalScore);
+      }
+      return currentScore;
     }
 
 
@@ -94,3 +107,4 @@ class Bowling {
 }
 
 let game = new Bowling();
+game.calculateCurrentScore()
