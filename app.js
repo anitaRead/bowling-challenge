@@ -2,7 +2,7 @@ class Bowling {
     constructor(){
         this.currentFrame = [];
         this.frames = [];
-        this.totalScore;
+        this.totalScore = 0;
         this.frameIndex = 1;
     }
 
@@ -18,7 +18,7 @@ class Bowling {
 
             if(pins === 10){
               this.currentFrame.push(10, 0);
-              this.endFrame();
+              // this.endFrame();
             }  else {
                 this.currentFrame.push(pins);
             }
@@ -32,8 +32,8 @@ class Bowling {
 
     isFrameEnd() {
         let frameLength = this.currentFrame.length;
-        
-        if(!this.isFinalFrame) {
+
+        if(!this.isFinalFrame()) {
             return frameLength === 2;
         } else {
             return frameLength === 3;
@@ -52,7 +52,7 @@ class Bowling {
 
     finalFrame(pins) {
         let ballNumber = this.currentFrame.length+1;
-        
+
         if(ballNumber === 1){
             this.currentFrame.push(pins);
         } else if (ballNumber === 3) {
@@ -78,7 +78,7 @@ class Bowling {
 
     endGame() {
         this.frames.push(this.currentFrame);
-        
+
         console.log(this.totalScore);
 
         for(let i=0; i<this.frames.length; i++) {
@@ -94,6 +94,3 @@ class Bowling {
 }
 
 let game = new Bowling();
-
-
-
